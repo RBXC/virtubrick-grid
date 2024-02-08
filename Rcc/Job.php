@@ -67,4 +67,39 @@ class Job
 			'script' => $script
 		]));
 	}
+	
+	public function execute(LuaScript $input): array
+	{
+		if(!$this->arbiter)
+			throw new \Exception('Job has no arbiter associated.');
+		
+		$script = collect($input)->toArray();
+		$script['arguments'] = GridService::serializeArray($input->arguments);
+		
+		return $this->arbiter->soapCall('ExecuteEx', array([
+			'jobID' => $this->id,
+			'script' => $script
+		]));
+	}
+	
+	public function renewLease(int $expiration): array
+	{
+		if(!$this->arbiter)
+			throw new \Exception('Job has no arbiter associated.');
+		
+		return $this->arbiter->soapCall('RenewLease', array([
+			'jobID' => $this->id,
+			'expirationInSeconds' => $expiration
+		]));
+	}
+	
+	public function closeJob(): array
+	{
+		if(!$this->arbiter)
+			throw new \Exception('Job has no arbiter associated.');
+		
+		return $this->arbiter->soapCall('CloseJob', array([
+			'jobID' => $this->id
+		]));
+	}
 }

@@ -41,6 +41,10 @@ trait GridSerializerTrait
 	public static function deserializeArray(object|array $array): array
 	{
 		$result = reset($array);
+		
+		if(gettype($result) != 'object' && gettype($result) != 'string')
+			return [$result];
+		
 		if(!property_exists($result, 'LuaValue'))
 			return [];
 		
