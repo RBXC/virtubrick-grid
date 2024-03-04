@@ -5,7 +5,6 @@
 
 namespace Virtubrick\Grid\Rcc;
 
-use Illuminate\Support\Str;
 use Virtubrick\Grid\GridService;
 use Virtubrick\Grid\Rcc\LuaScript;
 
@@ -18,7 +17,14 @@ class Job
 	{
 		if(empty($this->id))
 		{
-			$this->id = Str::uuid();
+			// This generates a RFC 4122 compliant Version 4 UUID to be used as a default job ID.
+			// https://www.rfc-editor.org/rfc/rfc4122#section-4.4
+			// https://stackoverflow.com/a/15875555
+			$guidv4 = random_bytes(16);
+			$guidv4[6] = chr(ord($guidv4[6]) & 0x0f | 0x40); // Encode time_hi_and_version
+			$guidv4[8] = chr(ord($guidv4[8]) & 0x3f | 0x80); // Encode clock_seq_hi_and_reserved
+			
+			$this->id = vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($guidv4), 4));
 		}
 	}
 	
