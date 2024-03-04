@@ -57,4 +57,4 @@ header('x-asset-dependencies', implode(',', $assetDependencies));
 exit(base64_decode($renderB64));
 ```
 
-Copyright (C) 2024 kylegg. All rights reserved.
+Copyright 2024 kylegg
