@@ -1,0 +1,12 @@
+{
+    "name": "virtubrick/grid",
+    "description": "Helper library for communicating with the Roblox Grid Service.",
+    "type": "library",
+    "license": "Apache 2.0 License",
+    "authors": [
+        {
+            "name": "kylegg"
+        }
+    ],
+    "require": {}
+}
