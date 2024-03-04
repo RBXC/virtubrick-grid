@@ -1,7 +1,8 @@
 # Virtubrick\Grid
-This library allows for communication between the Virtubrick website and the RCC Grid Service.
+This library allows for communication between the Virtubrick website and the Roblox Grid Service.
 
-Example Usage:
+### Example Usage:
+Generating a Thumbnail
 ```php
 $job = (new Job($jobId = Str::uuid(), $expirationInSeconds = 120))
 		->arbiter(new GridService('http://127.0.0.1:64989'))
