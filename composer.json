@@ -2,7 +2,7 @@
     "name": "virtubrick/grid",
     "description": "Helper library for communicating with the Roblox Grid Service.",
     "type": "library",
-    "license": "Apache 2.0 License",
+    "license": "Apache-2.0",
     "authors": [
         {
             "name": "kylegg"
