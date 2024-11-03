@@ -108,4 +108,12 @@ class Job
 			'jobID' => $this->id
 		]));
 	}
+
+	public function closeAllJobs(): array
+	{
+		if(!$this->arbiter)
+			throw new \Exception('Job has no arbiter associated.');
+		
+		return $this->arbiter->soapCall('CloseAllJobs');
+	}
 }

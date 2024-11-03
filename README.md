@@ -18,7 +18,7 @@ The Rcc\Job class is the first thing you should be constructing. All functions t
 - `execute(\Virtubrick\Grid\Rcc\LuaScript $input): array` Executes a script on the job. Returns result from the executed script.
 - `renewLease(int $expiration): array` Renews the lease on the Job for $expiration amount of seconds.
 - `closeJob(): array` Closes the job.
-
+- `closeAllJobs(): array` Closes all present jobs.
 ## Virtubrick\Grid\Rcc\LuaScript
 Class that allows easy communication for scripts via the Job class.
 
