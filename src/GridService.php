@@ -30,4 +30,9 @@ class GridService
 		$result = $this->soapClient->__soapCall($name, $args ?? []);
 		return static::deserializeArray($result);
 	}
+
+	public function closeAllJobs(): array
+	{
+		return $this->soapCall('CloseAllJobs');
+	}
 }
