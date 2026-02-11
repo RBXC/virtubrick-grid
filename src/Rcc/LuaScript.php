@@ -9,6 +9,11 @@ class LuaScript
 {
 	public function __construct(public string $name, public string $script, public array $arguments = [])
 	{
-		
+		//
+	}
+	
+	public function toArray(): array
+	{
+		return (array) $this;
 	}
 }

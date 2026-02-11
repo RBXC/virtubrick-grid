@@ -48,7 +48,7 @@ class Job
 		if(!$this->script)
 			throw new \Exception('Job has no script associated.');
 		
-		$script = collect($this->script)->toArray();
+		$script = $this->script->toArray();
 		$script['arguments'] = GridService::serializeArray($this->script->arguments);
 		
 		return $this->arbiter->soapCall('OpenJobEx', array([
@@ -65,7 +65,7 @@ class Job
 		if(!$this->script)
 			throw new \Exception('Job has no script associated.');
 		
-		$script = collect($this->script)->toArray();
+		$script = $this->script->toArray();
 		$script['arguments'] = GridService::serializeArray($this->script->arguments);
 		
 		return $this->arbiter->soapCall('BatchJobEx', array([
@@ -79,7 +79,7 @@ class Job
 		if(!$this->arbiter)
 			throw new \Exception('Job has no arbiter associated.');
 		
-		$script = collect($input)->toArray();
+		$script = $input->toArray();
 		$script['arguments'] = GridService::serializeArray($input->arguments);
 		
 		return $this->arbiter->soapCall('ExecuteEx', array([
