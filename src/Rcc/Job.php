@@ -40,6 +40,14 @@ class Job
 		return $this;
 	}
 	
+	public function toArray(): array
+	{
+		$array = (array) $this;
+		$keys = array_flip(['id', 'expirationInSeconds', 'cores', 'category']);
+		$jobArray = array_intersect_key($array, $keys);
+		return $jobArray;
+	}
+	
 	public function open(): array
 	{
 		if(!$this->arbiter)
@@ -52,7 +60,7 @@ class Job
 		$script['arguments'] = GridService::serializeArray($this->script->arguments);
 		
 		return $this->arbiter->soapCall('OpenJobEx', array([
-			'job' => collect($this)->only(['id', 'expirationInSeconds', 'cores', 'category'])->toArray(),
+			'job' => $this->toArray(),
 			'script' => $script
 		]));
 	}
@@ -69,7 +77,7 @@ class Job
 		$script['arguments'] = GridService::serializeArray($this->script->arguments);
 		
 		return $this->arbiter->soapCall('BatchJobEx', array([
-			'job' => collect($this)->only(['id', 'expirationInSeconds', 'cores', 'category'])->toArray(),
+			'job' => $this->toArray(),
 			'script' => $script
 		]));
 	}
