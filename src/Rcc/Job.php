@@ -89,7 +89,7 @@ class Job
 		
 		return $this->arbiter->soapCall('GetExpiration', array([
 			'jobID' => $this->id
-		]));
+		]))[0];
 	}
 	
 	public function execute(LuaScript $input): array

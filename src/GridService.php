@@ -33,12 +33,12 @@ class GridService
 
 	public function helloWorld(): string
 	{
-		return $this->soapCall('HelloWorld');
+		return $this->soapCall('HelloWorld')[0];
 	}
 
 	public function getVersion(): string
 	{
-		return $this->soapCall('GetVersion');
+		return $this->soapCall('GetVersion')[0];
 	}
 
 	public function getStatus(): array
@@ -53,11 +53,11 @@ class GridService
 
 	public function closeExpiredJobs(): int
 	{
-		return $this->soapCall('CloseExpiredJobs');
+		return $this->soapCall('CloseExpiredJobs')[0];
 	}
 
 	public function closeAllJobs(): int
 	{
-		return $this->soapCall('CloseAllJobs');
+		return $this->soapCall('CloseAllJobs')[0];
 	}
 }
