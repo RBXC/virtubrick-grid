@@ -40,7 +40,8 @@ trait GridSerializerTrait
 	
 	public static function deserializeArray(object|array $array): array
 	{
-		$result = reset($array);
+		$arrayCopy = (array) $array;
+		$result = reset($arrayCopy);
 		
 		if(gettype($result) != 'object' && gettype($result) != 'string')
 			return [$result];
@@ -63,7 +64,7 @@ trait GridSerializerTrait
 			case 'LUA_TBOOLEAN':
 				return (bool)$value->value;
 			case 'LUA_TNUMBER':
-				return (double)$value->value;
+				return (float)$value->value;
 			case 'LUA_TTABLE':
 				if(count((array)$value->table) == 0)
 					return [];
