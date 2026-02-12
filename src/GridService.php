@@ -31,7 +31,32 @@ class GridService
 		return static::deserializeArray($result);
 	}
 
-	public function closeAllJobs(): array
+	public function helloWorld(): string
+	{
+		return $this->soapCall('HelloWorld');
+	}
+
+	public function getVersion(): string
+	{
+		return $this->soapCall('GetVersion');
+	}
+
+	public function getStatus(): array
+	{
+		return $this->soapCall('GetStatus');
+	}
+
+	public function getAllJobs(): array
+	{
+		return $this->soapCall('GetAllJobsEx');
+	}
+
+	public function closeExpiredJobs(): int
+	{
+		return $this->soapCall('CloseExpiredJobs');
+	}
+
+	public function closeAllJobs(): int
 	{
 		return $this->soapCall('CloseAllJobs');
 	}

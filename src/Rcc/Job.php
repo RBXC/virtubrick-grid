@@ -82,6 +82,16 @@ class Job
 		]));
 	}
 	
+	public function getExpiration(): float
+	{
+		if(!$this->arbiter)
+			throw new \Exception('Job has no arbiter associated.');
+		
+		return $this->arbiter->soapCall('GetExpiration', array([
+			'jobID' => $this->id
+		]));
+	}
+	
 	public function execute(LuaScript $input): array
 	{
 		if(!$this->arbiter)
@@ -114,6 +124,17 @@ class Job
 		
 		return $this->arbiter->soapCall('CloseJob', array([
 			'jobID' => $this->id
+		]));
+	}
+
+	public function diag(int $type): array
+	{
+		if(!$this->arbiter)
+			throw new \Exception('Job has no arbiter associated.');
+		
+		return $this->arbiter->soapCall('DiagEx', array([
+			'jobID' => $this->id,
+			'type' => $type
 		]));
 	}
 }
